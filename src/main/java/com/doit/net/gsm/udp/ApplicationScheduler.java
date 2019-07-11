@@ -47,6 +47,7 @@ public class ApplicationScheduler {
 	}
 
 	public static void stopScheduler(){
+		System.out.println("停止调度");
 		try {
 			if(scheduler!=null){
 				scheduler.shutdown(true);
