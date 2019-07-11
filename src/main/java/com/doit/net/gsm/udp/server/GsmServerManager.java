@@ -38,6 +38,7 @@ public class GsmServerManager {
 	}
 
 	public static void startListener(){
+		System.out.println("开始监听");
 		startListener( PORT );
 	}
 
