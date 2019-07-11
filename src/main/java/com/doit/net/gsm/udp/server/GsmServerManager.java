@@ -4,9 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
+import java.net.*;
 
 /**
  * Created by wly on 2019/7/11.
@@ -19,6 +17,7 @@ public class GsmServerManager {
 
 	private static int PORT = 9001;
 	private static final int TIME_OUT = 3*60*1000;
+	private static  String IP = "192.168.1.99";
 
 	public static boolean isStarted = false;
 
@@ -33,7 +32,7 @@ public class GsmServerManager {
 			new GsmWorkThread().start();
 			new GsmSenderThread().start();
 			log.info( "【GSM-Server】 started on port:{}",PORT );
-		}catch (SocketException e){
+		}catch (Exception e){
 			log.error( "【GSM-Server】 启动异常，端口:{},异常原因：",port,e.getMessage() );
 		}
 	}
@@ -42,10 +41,22 @@ public class GsmServerManager {
 		startListener( PORT );
 	}
 
-	public static DatagramSocket getDatagramSocket() {
-		return datagramSocket;
-	}
+	private static DatagramSocket clientSocket = null;
 
+	public static DatagramSocket getDatagramSocket() {
+		try {
+			if(clientSocket==null){
+				clientSocket = new DatagramSocket( PORT,InetAddress.getByAddress( IP.getBytes() ) );
+			}
+			return clientSocket;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static void setDatagramSocket(String ip) {
+		IP = ip;
+	}
 	public static void setDatagramSocket(DatagramSocket datagramSocket) {
 		GsmServerManager.datagramSocket = datagramSocket;
 	}
