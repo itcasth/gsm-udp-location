@@ -17,7 +17,6 @@ public class GsmServerManager {
 
 	private static int PORT = 9001;
 	private static final int TIME_OUT = 3*60*1000;
-	private static  String IP = "192.168.1.99";
 
 	public static boolean isStarted = false;
 
@@ -45,19 +44,9 @@ public class GsmServerManager {
 	private static DatagramSocket clientSocket = null;
 
 	public static DatagramSocket getDatagramSocket() {
-		try {
-			if(clientSocket==null){
-				clientSocket = new DatagramSocket( PORT,InetAddress.getByAddress( IP.getBytes() ) );
-			}
-			return clientSocket;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		return datagramSocket;
 	}
-	public static void setDatagramSocket(String ip) {
-		IP = ip;
-	}
+
 	public static void setDatagramSocket(DatagramSocket datagramSocket) {
 		GsmServerManager.datagramSocket = datagramSocket;
 	}
