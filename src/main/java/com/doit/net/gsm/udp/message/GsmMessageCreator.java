@@ -58,6 +58,26 @@ public class GsmMessageCreator {
 		GsmSenderThread.put(message);
 	}
 
+
+	/**
+	 * 开始定位
+	 * @param ip
+	 * @param port
+	 */
+	public static void startLocate(String ip,int port,String imsi){
+		setWorkType( ip,port,1 );
+		setBlackList( ip,port,imsi );
+	}
+
+	/**
+	 * 停止定位
+	 * @param ip
+	 * @param port
+	 */
+	public static void stopLocate(String ip,int port,String imsi){
+		setWorkType( ip,port,0 );
+	}
+
 	/**
 	 * 设置黑名单
 	 * @param ip
