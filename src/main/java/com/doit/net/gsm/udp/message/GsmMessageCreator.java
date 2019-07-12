@@ -29,7 +29,7 @@ public class GsmMessageCreator {
 	public static void closeRf(String ip,int port){
 		GsmMessage message = new GsmMessage();
 		message.setSocketAddress(ip,port);
-		message.setContent( GsmConstants.START_CELL );
+		message.setContent( GsmConstants.STOP_CELL );
 		GsmSenderThread.put(message);
 	}
 
