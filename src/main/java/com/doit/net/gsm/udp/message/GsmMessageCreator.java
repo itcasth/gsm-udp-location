@@ -74,7 +74,7 @@ public class GsmMessageCreator {
 	 * @param ip
 	 * @param port
 	 */
-	public static void stopLocate(String ip,int port,String imsi){
+	public static void stopLocate(String ip,int port){
 		setWorkType( ip,port,0 );
 	}
 
